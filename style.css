@@ -1,5 +1,35 @@
 :root {
-  --background-color: #17162E;
+  --background-color: #F7F7FA;
+  --text-color: #222;
+  --movie-bg: #FFF;
+  --input-bg: #FFF;
+  --input-text: #222;
+  --description-color: #666;
+}
+
+.dark {
+  --background-color: #181818;
+  --text-color: #FFF;
+  --movie-bg: #333333;
+  --input-bg: #222222;
+  --input-text: #FFF;
+  --description-color: #FFF;
+}
+
+.dark .movie {
+  color: var(--text-color);
+}
+
+.dark .input-container {
+  box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+}
+
+.dark .movie {
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.1);
+}
+
+.dark .movie .movie-image img {
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -17,6 +47,7 @@ body {
   padding: 2rem;
   background: var(--background-color);
   margin: 0 auto;
+  transition: background 0.3s ease;
 }
 
 main {
@@ -24,19 +55,22 @@ main {
 }
 
 h2 {
-  color: #FFF;
+  color: var(--text-color);
   text-align: center;
   margin: 2rem 0;
+  transition: color 0.3s ease;
 }
 
 .input-container {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--input-bg);
   width: 50%;
   margin: 0 auto;
   margin-bottom: 2rem;
   display: flex;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input-container input {
@@ -46,7 +80,7 @@ h2 {
   outline: none;
   border: none;
   background-color: transparent;
-  color: #FFF;
+  color: var(--input-text);
 }
 
 .input-container img {
@@ -56,22 +90,22 @@ h2 {
 .showOnlyFavorites {
   text-align: center;
   margin-bottom: 2rem;
-  color: #FFF;
+  color: #444;
 }
 
 .movie {
-  color: #FFF;
+  color: #222;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  background: #1D1C3B;
+  background: var(--movie-bg);
   border-radius: 0.5rem; 
   padding: 1rem;
   margin: 0 auto;
   margin-bottom: 2rem;
   max-width: 1024px;
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
 }
 
 .movie .movie-image {
@@ -84,8 +118,8 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 0%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .movie-informations {
@@ -127,9 +161,13 @@ h2 {
   transform: scale(1.1);
 }
 
+.movie:nth-child(1) h4, .movie:nth-child(3) h4 {
+  font-size: 1.2rem;
+}
+
 .movie-description {
   max-width: 50%;
-  color: #ACACAC;
+  color: var(--description-color);
   font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.5rem;
