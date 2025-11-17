@@ -1,4 +1,4 @@
-fa# ⭐ SkillSpot-Reviews
+# ⭐ SkillSpot-Reviews
 
 Um projeto desenvolvido no âmbito do #7DaysOfCode do GitHub pela Alura. Este site permite que os usuários visualizem e compartilhem análises sobre filmes.
 
