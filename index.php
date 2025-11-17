@@ -1,0 +1,99 @@
+<?php
+// index.php - PHP version of the movie reviews site
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h2>Avaliações de Filmes</h2>
+    <div class="input-container">
+      <input type="text" name="movie-name" id="movie-name" placeholder="Digite algum filme para pesquisar...">
+      <img src="images/search-icon.svg" alt="Ícone de pesquisa" class="searchIcon">
+    </div>
+
+    <div class="movies" id="movies-list"></div>
+
+  <footer style="text-align: center;">
+    <p>&copy; Todos os direitos reservados.</p>
+    <p>Code By:</p>
+    <div style="text-align: center;">
+      <a href="https://github.com/otaviophellipe" target="_blank" title="GitHub - Otavio Phellipe">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" style="width: 30px; margin: 5px;">
+      </a>
+      <a href="https://www.linkedin.com/in/otaviophellipe/" target="_blank" title="LinkedIn - Otavio Phellipe">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 30px; margin: 5px;">
+      </a>
+    </div>
+  </footer>
+  </main>
+  <script>
+    let movies = [];
+
+    fetch('movies.json')
+      .then(response => response.json())
+      .then(data => {
+        movies = data;
+        renderMovies();
+      })
+      .catch(error => console.error('Error loading movies:', error));
+
+    function renderMovies(filter = "") {
+    const moviesList = document.getElementById('movies-list');
+    moviesList.innerHTML = "";
+    const filtered = movies.filter(movie =>
+      movie.title.toLowerCase().includes(filter.toLowerCase())
+    );
+    if (filtered.length === 0) {
+      moviesList.innerHTML = "<p>Nenhum filme encontrado.</p>";
+      return;
+    }
+    filtered.forEach(movie => {
+      const truncatedDesc = movie.description.length > 100 ? movie.description.substring(0, 100) + '...' : movie.description;
+      moviesList.innerHTML += `
+      <div class="movie">
+      <div class="movie-informations">
+        <div class="movie-image">
+        <img src="${movie.image}" alt="${movie.title}"/>
+        </div>
+        <div class="movie-text">
+        <h4>${movie.title}</h4>
+        <div class="rating-favorites">
+          <div class="rating">
+          <img src="images/star.png" alt="Star Icon"/>
+          <span>${movie.rating}</span>
+          </div>
+          <div class="favorite">
+          <img src="images/heart.svg" alt="Star Icon"/>
+          <span>Favoritar</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="movie-description">
+        <span class="desc-text">${truncatedDesc}</span>
+        <button class="expand-btn" data-full="${movie.description}" data-expanded="false">Exibir mais</button>
+      </div>
+      </div>
+      `;
+    });
+    }
+
+    document.getElementById('movie-name').addEventListener('input', function() {
+    renderMovies(this.value);
+    });
+  </script>
+
+<button id="theme-toggle" style="position: fixed; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer;">🌙</button>
+<script src="script.js"></script>
+</body>
+</html>
