@@ -1,4 +1,4 @@
-# ⭐ SkillSpot-Reviews
+fa# ⭐ SkillSpot-Reviews
 
 Um projeto desenvolvido no âmbito do #7DaysOfCode do GitHub pela Alura. Este site permite que os usuários visualizem e compartilhem análises sobre filmes.
 
@@ -14,15 +14,23 @@ O SkillSpot-Reviews é um site que reuniu análises e comentários sobre diferen
 
 - HTML
 - CSS
-- JS
+- JavaScript
+- JSON
+- SASS
+- TypeScript
+- PHP
 
 ## ©️ Estrutura do Projeto
 
 O projeto é composto pelos seguintes arquivos:
 
 - `index.html`: O arquivo principal do site que contém a estrutura HTML.
-- `style.css`: O arquivo de estilos CSS que define a aparência do site.
-- `scripts.js`: O arquivo de funcionabilidade dos botões.
+- `index.php`: Versão PHP do site com a mesma funcionalidade.
+- `style.css`: O arquivo de estilos CSS compilado.
+- `style.scss`: Arquivo SASS com sintaxe avançada para estilos.
+- `script.js`: Arquivo JavaScript compilado a partir do TypeScript.
+- `script.ts`: Arquivo TypeScript com tipagem forte.
+- `movies.json`: Arquivo JSON contendo os dados dos filmes.
 - `images/`: Diretório que contém as imagens utilizadas no site.
 
 ## 🔍 Como Usar
@@ -36,3 +44,24 @@ ou
 Clone o repositório para a sua máquina:
    ```bash
    git clone https://github.com/otaviophellipe/SkillSpot-Reviews.git
+   ```
+
+### Para desenvolvimento:
+
+1. Instale as dependências:
+   ```bash
+   npm install -g sass typescript
+   ```
+
+2. Compile os arquivos:
+   ```bash
+   sass style.scss style.css
+   tsc script.ts --outFile script.js --target es2015
+   ```
+
+3. Execute um servidor local:
+   ```bash
+   python -m http.server 8000
+   ```
+
+4. Abra `http://localhost:8000` no navegador para visualizar o site.
